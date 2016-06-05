@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "## Loading in the data once and necessary libraries\nsource(\"./Prediction_Functions.R\", local = TRUE)\nrequire(compiler)\nrequire(hunspell)\n\n## Reactive code\nshinyServer(function(input, output) {\n  \n  output$check <- renderUI({\n  \n  checked.input <- input.check(input$input.text)\n      \n    if(length(checked.input) == 2) {\n      \n      str1 <- \"No errors detected.<br/>\"\n      str2 <- paste(\"Input Passed: \", checked.input$`Input Used`)\n      \n      output.1 <- HTML(paste(str1, str2, sep = \"<br/>\"))\n      \n      return(output.1)\n    }\n    \n    if(length(checked.input) > 2) {\n      \n      str1 <- \"Potential errors detected.\"\n      \n      str2 <- checked.input$Warning\n      \n      str3 <- \"<br/>\"\n      \n      for(i in 3:length(checked.input)-1) {\n        \n        str3 <- paste(\n          str3,\n          paste0(names(checked.input)[i], \" -->\"),\n          paste(checked.input[[i]], collapse = \" | \"),\n          \"<br/>\"\n        )\n      }\n      \n      str4 <- paste(\"Input Passed: \", checked.input$`Input Used`)\n      \n      output.2 <- HTML(paste(str1, str2, str3, str4, sep = \"<br/>\"))\n      \n      return(output.2) \n    }\n    \n    \n  })\n  \n  output$summary <- renderUI({\n    \n    checked.input <- input.check(input$input.text)\n    \n    pred <- predict.ngram(tune = 30,\n                          sentence = input$input.text)\n    \n    output$best.pred <- renderText({\n      \n      output.0 <- pred$`Best Predictions`[1]\n\n      return(output.0)\n      })\n    \n    str1 <- paste0(\"Original Input: \", pred$`Original Input`)\n    \n    str2 <- paste0(\"Input Used: \", pred$`Input Used`)\n    \n    str3 <- paste0(\"Back-Offs: \", pred$`Back-Offs`)\n    \n    str4 <- paste0(\"Seen Before? \", pred$`Seen Before?`)\n    \n    str5 <- \"<br/>Best Prediction(s): \"\n    \n    str6 <- paste(pred$`Best Predictions`, collapse = \" | \")\n    \n    str5 <- paste(str5, str6)        \n    \n    output.3 <- HTML(paste(str1, str2, str3, \n                           str4, str5, sep = \"<br/>\"))\n    \n    output$table <- renderTable({pred$`Result Table`})\n    \n    return(output.3)\n  })  \n  \n})",
+    "created" : 1465144777605.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4046242383",
+    "id" : "BAF7FF9C",
+    "lastKnownWriteTime" : 1465148046,
+    "last_content_update" : 1465148046715,
+    "path" : "C:/Users/Stat-Comp-01/OneDrive/R/Capstone/App/Word_Prediction_Capstone/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

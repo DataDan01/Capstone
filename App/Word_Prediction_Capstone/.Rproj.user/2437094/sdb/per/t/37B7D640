@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "shinyUI(fluidPage(column(width = 10, align = \"left\", offset = 4,\n  headerPanel(\"Word Prediction Algorithm\"),\n\n  # Define the sidebar with one input\n    textInput(inputId = \"input.text\", \n              label = \"Your input: \", \n              value = \"type here\"),\n\n    \n    h3(\"Best Prediction\"),\n    column(verbatimTextOutput(outputId = \"best.pred\"),\n           width = 2,\n           offset = 0),\n    h2(\"*\"),\n    h3(\"Input Check\"),\n    htmlOutput(\"check\"),\n    h3(\"Output Summary\"),\n    htmlOutput(\"summary\"),\n    h3(\"Output Table\"),\n    htmlOutput(\"table\")\n  \n)))",
+    "created" : 1465144774586.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1717355043",
+    "id" : "37B7D640",
+    "lastKnownWriteTime" : 1465148855,
+    "last_content_update" : 1465148855727,
+    "path" : "C:/Users/Stat-Comp-01/OneDrive/R/Capstone/App/Word_Prediction_Capstone/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
